@@ -1,0 +1,30 @@
+@import "../base/colors";
+
+.dashboard-header{
+    background-color: $primary-text-color;
+    display: flex;
+    align-items: center;
+    padding:25px 0px;
+    .header-logo{
+        display: flex;
+        align-items: center;
+        margin-right: 40px;
+        img{
+            width:18px;
+            height:31px;
+            padding: 7px 0px;
+            margin-right: 20px;
+        }
+        span{
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 22px;
+        }
+    }
+    
+    .header-select-box{
+        width:186px;
+        height:39px;
+        border-radius: 4px;  
+    }
+}

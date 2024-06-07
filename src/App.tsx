@@ -1,30 +1,32 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import {
-  Login,
-  Error,
-  Signup
-} from './pages';
+    Route,
+    Routes,
+    BrowserRouter,
+} from "react-router-dom";
+import { Login, Signup, Dashboard, DataManager } from "./pages";
+import { useAppSelector } from "./hooks/storeHook";
 
-
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Login />,
-    errorElement: <Error />,
-  },
-  {
-    path: '/signup',
-    element: <Signup />,
-    errorElement: <Error />,
-  },
-]);
 
 const App = () => {
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  );
+    const { user } = useAppSelector((state) => state.auth);
+
+    return (
+        <>
+            <BrowserRouter>
+                <Routes>
+                    {Boolean(!user) && (
+                        <>
+                            <Route path="/" element={<Signup />} />
+                            <Route path="/login" element={<Login />} />
+                        </>
+                    )}
+                    
+                    <Route path="/dashboard" element={<Dashboard />}>
+                        <Route path="data-manager" element={<DataManager />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </>
+    );
 };
 export default App;
